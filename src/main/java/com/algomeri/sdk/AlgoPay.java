@@ -1,18 +1,11 @@
 package com.algomeri.sdk;
 
-import com.algomeri.configuration.AlgoPayConfiguration;
-import com.algomeri.factory.TransactionFactory;
-import com.algomeri.service.Transaction;
-import com.algomeri.service.payload.TransactionInitPayload;
-import com.algomeri.service.response.TransactionInitResponse;
 import lombok.Data;
-import lombok.ToString;
+import lombok.EqualsAndHashCode;
 
 @Data
-@ToString
-public final class AlgoPay implements Transaction {
-
-    private AlgoPayConfiguration configuration;
+@EqualsAndHashCode(callSuper = false)
+public final class AlgoPay extends AbstractAlgoPay {
 
     private static final AlgoPay instance = new AlgoPay();
 
@@ -20,12 +13,5 @@ public final class AlgoPay implements Transaction {
 
     public static AlgoPay getInstance() {
         return instance;
-    }
-
-    @Override
-    public TransactionInitResponse initTransaction(TransactionInitPayload payload) throws Exception {
-        Transaction transaction = TransactionFactory.getInstance(configuration.getPaymentPlatform());
-        TransactionInitResponse response = transaction.initTransaction(payload);
-        return response;
     }
 }
