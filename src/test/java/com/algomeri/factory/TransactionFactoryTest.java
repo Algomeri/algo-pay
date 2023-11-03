@@ -1,7 +1,5 @@
 package com.algomeri.factory;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import com.algomeri.sdk.enumeration.PaymentPlatform;
 import com.algomeri.service.Transaction;
 import com.algomeri.service.impl.paystack.PaystackTransaction;
