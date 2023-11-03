@@ -7,6 +7,7 @@ import com.algomeri.service.Transaction;
 import com.algomeri.service.payload.TransactionInitPayload;
 import com.algomeri.service.payload.paystack.PaystackTransactionInitPayload;
 import com.algomeri.service.response.TransactionInitResponse;
+import com.algomeri.service.response.TransactionVerificationResponse;
 import com.algomeri.utility.Mapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.util.stream.Collectors;
@@ -54,5 +55,11 @@ public class PaystackTransaction implements Transaction {
             .paymentUrl(node.at("/data/authorization_url").asText())
             .accessCode(node.at("/data/access_code").asText())
             .build();
+    }
+
+    @Override
+    public TransactionVerificationResponse verifyTransaction() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'verifyTransaction'");
     }
 }

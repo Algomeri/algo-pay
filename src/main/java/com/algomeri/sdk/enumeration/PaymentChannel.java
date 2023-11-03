@@ -4,8 +4,11 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Locale;
 
 /**
- * Payment channels user is allowed to make payment from
- * Select channels applicable to your payment platform
+ * @author Edward Abattam
+ * @since 1.0.0
+ * @apiNote
+ * <p> Payment channels user is allowed to make payment from
+ * <p>Select channels applicable to your payment platform
  */
 public enum PaymentChannel {
     /**
