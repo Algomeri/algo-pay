@@ -1,6 +1,6 @@
 package com.algomeri.factory;
 
-import com.algomeri.domain.enumeration.PaymentPlatform;
+import com.algomeri.sdk.enumeration.PaymentPlatform;
 import com.algomeri.service.Transaction;
 import com.algomeri.service.impl.paystack.PaystackTransaction;
 

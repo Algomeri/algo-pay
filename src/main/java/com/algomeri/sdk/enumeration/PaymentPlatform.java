@@ -1,4 +1,4 @@
-package com.algomeri.domain.enumeration;
+package com.algomeri.sdk.enumeration;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Locale;

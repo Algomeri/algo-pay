@@ -1,8 +1,12 @@
-package com.algomeri.domain.enumeration;
+package com.algomeri.sdk.enumeration;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Locale;
 
+/**
+ * Payment channels user is allowed to make payment from
+ * Select channels applicable to your payment platform
+ */
 public enum PaymentChannel {
     /**
      * Paystack channel

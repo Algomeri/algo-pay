@@ -43,8 +43,8 @@ public class Mapper {
         return jsonToPojo(objectMapper().readTree(json), to);
     }
 
-    public JsonNode jsonToNode(String json) throws JsonProcessingException, JsonMappingException {
-        return objectMapper().readTree(json);
+    public static JsonNode jsonToNode(String json) throws JsonProcessingException, JsonMappingException {
+        return mapper().readTree(json);
     }
 
     public <T> T convert(String response, Class<T> to) throws Exception {
