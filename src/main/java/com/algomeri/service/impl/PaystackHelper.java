@@ -36,7 +36,7 @@ public class PaystackHelper implements Helper {
             JsonNode node = PaystackClient.client.validateBankAccount(accountNumber, bankCode).execute().body();
             return mappingUtils.jsonToPojo(node.get("data"), PaystackAccountVerifier.class);
         } catch (Exception e) {
-            log.error("Error getting banks: {}", e.getMessage());
+            log.error("Error verifying account number: {}", e.getMessage());
             throw new RuntimeException("An exception occured while verifying account number", e);
         }
     }
