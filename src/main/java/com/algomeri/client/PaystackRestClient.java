@@ -8,6 +8,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface PaystackRestClient {
 
@@ -16,5 +17,11 @@ public interface PaystackRestClient {
 
     @GET("transaction/verify/{reference}")
     Call<JsonNode> verifyPayment(@Path("reference") String reference);
+
+    @GET("bank")
+    Call<JsonNode> getBanks();
+
+    @GET("bank/resolve")
+    Call<JsonNode> validateBankAccount(@Query(value = "account_number") String accountNumber, @Query(value = "bank_code") String bankCode);
 
 }

@@ -1,5 +1,6 @@
 package com.algomeri.data;
 
-public class Bank {
-
+public interface Bank {
+    public String getName();
+    public String getCode();
 }
