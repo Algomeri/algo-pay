@@ -4,7 +4,9 @@ import java.util.Optional;
 
 import com.algomeri.service.AlgoPayBuilder;
 import com.algomeri.service.Configuration;
+import com.algomeri.service.Payment;
 import com.algomeri.service.impl.PaystackConfiguration;
+import com.algomeri.service.impl.PaystackPayment;
 
 public class Paystack implements AlgoPay {
 
@@ -62,6 +64,11 @@ public class Paystack implements AlgoPay {
             return buildInstance(this);
         }
 
+    }
+
+    @Override
+    public Payment payment() {
+        return new PaystackPayment();
     }
 
 }
