@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.algomeri.response.PaymentVerifier;
+import com.algomeri.data.PaymentVerifier;
 import com.algomeri.sdk.AlgoPay;
 import com.algomeri.sdk.Paystack;
 import com.algomeri.service.impl.PaystackConfig;

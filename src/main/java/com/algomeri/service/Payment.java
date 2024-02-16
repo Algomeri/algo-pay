@@ -3,13 +3,13 @@ package com.algomeri.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.algomeri.data.ChargeRes;
+import com.algomeri.data.PayInit;
+import com.algomeri.data.PayTimeline;
+import com.algomeri.data.PaymentResponse;
+import com.algomeri.data.PaymentVerifier;
 import com.algomeri.payload.PaymentParam;
 import com.algomeri.payload.PaymentPayload;
-import com.algomeri.response.ChargeRes;
-import com.algomeri.response.PayInit;
-import com.algomeri.response.PaymentResponse;
-import com.algomeri.response.PayTimeline;
-import com.algomeri.response.PaymentVerifier;
 
 /**
  * Contains contract for handling payments from customers plus other useful methods
