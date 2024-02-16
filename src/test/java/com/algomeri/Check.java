@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import com.algomeri.data.AccountVerifier;
 import com.algomeri.data.Bank;
+import com.algomeri.data.CardVerifier;
 import com.algomeri.data.PaymentVerifier;
 import com.algomeri.sdk.AlgoPay;
 import com.algomeri.sdk.Paystack;
@@ -47,6 +48,12 @@ public class Check {
     @Test
     public void verifyAccount() {
         AccountVerifier verifier = algoPay.helper().verifyAccountNumber("7045553461", "999992");
+        log.info("response: {}", verifier);
+    }
+
+    @Test
+    public void verifyCard() {
+        CardVerifier verifier = algoPay.helper().validateCard("539983");
         log.info("response: {}", verifier);
     }
 

@@ -24,4 +24,7 @@ public interface PaystackRestClient {
     @GET("bank/resolve")
     Call<JsonNode> validateBankAccount(@Query(value = "account_number") String accountNumber, @Query(value = "bank_code") String bankCode);
 
+    @GET("decision/bin/{bin}")
+    Call<JsonNode> validateCard(@Path(value = "bin") String bin);
+
 }

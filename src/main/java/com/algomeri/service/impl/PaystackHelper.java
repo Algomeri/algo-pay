@@ -8,8 +8,10 @@ import org.slf4j.LoggerFactory;
 
 import com.algomeri.data.AccountVerifier;
 import com.algomeri.data.Bank;
+import com.algomeri.data.CardVerifier;
 import com.algomeri.data.impl.PaystackAccountVerifier;
 import com.algomeri.data.impl.PaystackBank;
+import com.algomeri.data.impl.PaystackCardVerifier;
 import com.algomeri.service.Helper;
 import com.algomeri.utility.MappingUtils;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -42,9 +44,13 @@ public class PaystackHelper implements Helper {
     }
 
     @Override
-    public void validateCard() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validateCard'");
+    public CardVerifier validateCard(String bin) {
+        try {
+            JsonNode node = PaystackClient.client.validateCard(bin).execute().body();
+            return mappingUtils.jsonToPojo(node.get("data"), PaystackCardVerifier.class);
+        } catch (Exception e) {
+            throw new RuntimeException("An exception occured while verifying card", e);
+        }
     }
 
     
