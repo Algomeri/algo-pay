@@ -5,11 +5,11 @@ import com.algomeri.service.Configuration;
 import lombok.ToString;
 
 @ToString
-public class PaystackConfiguration implements Configuration{
+public class PaystackConfig implements Configuration{
     private String secretKey;
     private String publicKey;
 
-    public PaystackConfiguration(String secretKey, String publicKey) {
+    public PaystackConfig(String secretKey, String publicKey) {
         this.secretKey = secretKey;
         this.publicKey = publicKey;
     }

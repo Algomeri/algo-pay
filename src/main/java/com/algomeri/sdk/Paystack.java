@@ -5,12 +5,12 @@ import java.util.Optional;
 import com.algomeri.service.AlgoPayBuilder;
 import com.algomeri.service.Configuration;
 import com.algomeri.service.Payment;
-import com.algomeri.service.impl.PaystackConfiguration;
+import com.algomeri.service.impl.PaystackConfig;
 import com.algomeri.service.impl.PaystackPayment;
 
 public class Paystack implements AlgoPay {
 
-    private PaystackConfiguration configuration;
+    private PaystackConfig configuration;
     private static volatile Optional<Paystack> instance = Optional.empty();
 
     private Paystack(Builder builder) {
@@ -51,11 +51,11 @@ public class Paystack implements AlgoPay {
     }
 
     public static class Builder implements AlgoPayBuilder {
-        private PaystackConfiguration configuration;
+        private PaystackConfig configuration;
 
         @Override
         public AlgoPayBuilder withConfiguration(Configuration configuration) {
-            this.configuration = (PaystackConfiguration) configuration;
+            this.configuration = (PaystackConfig) configuration;
             return this;
         }
 

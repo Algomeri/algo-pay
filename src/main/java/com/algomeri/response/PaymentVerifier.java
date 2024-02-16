@@ -1,15 +1,17 @@
 package com.algomeri.response;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 
-public interface PaymentVerificationResponse {
+public interface PaymentVerifier {
     public String getReference();
     public String getCurrency();
     public String getPaymentId();
-    public String getAmount();
+    public BigDecimal getAmount();
     public String getMessage();
     public Instant getDateCreated();
     public String getIpAddress();
-    public CustomerResponse getCustomer();
+    public CustomerRes getCustomer();
     public CardResponse getCard();
+    public String getStatus();
 }

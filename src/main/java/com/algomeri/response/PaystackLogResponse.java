@@ -1,10 +1,11 @@
 package com.algomeri.response;
 
+import java.time.Instant;
 import java.util.List;
 
 public interface PaystackLogResponse {
 
-    long getStartTime();
+    Instant getStartTime();
 
     int getTimeSpent();
 
@@ -16,8 +17,6 @@ public interface PaystackLogResponse {
 
     boolean isMobile();
 
-    List<Object> getInput();
-
     List<History> getHistory();
 
     interface History {
@@ -25,6 +24,6 @@ public interface PaystackLogResponse {
 
         String getMessage();
 
-        int getTime();
+        Instant getTime();
     }
 }

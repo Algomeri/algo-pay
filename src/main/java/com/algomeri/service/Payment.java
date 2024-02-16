@@ -5,11 +5,11 @@ import java.util.Optional;
 
 import com.algomeri.payload.PaymentParam;
 import com.algomeri.payload.PaymentPayload;
-import com.algomeri.response.PaymentChargeResponse;
-import com.algomeri.response.PaymentInitializationResponse;
+import com.algomeri.response.ChargeRes;
+import com.algomeri.response.PayInit;
 import com.algomeri.response.PaymentResponse;
-import com.algomeri.response.PaymentTimelineResponse;
-import com.algomeri.response.PaymentVerificationResponse;
+import com.algomeri.response.PayTimeline;
+import com.algomeri.response.PaymentVerifier;
 
 /**
  * Contains contract for handling payments from customers plus other useful methods
@@ -24,10 +24,10 @@ public interface Payment {
      * 
      * @param identifier -> If using paystack, this is the reference of the transaction
      * @see Payment#initializePayment()
-     * @return {@link PaymentVerificationResponse} containing information about the payment
+     * @return {@link PaymentVerifier} containing information about the payment
      * 
      */
-    public PaymentVerificationResponse verifyPayment(String identifier);
+    public Optional<PaymentVerifier> verifyPayment(String identifier);
 
     /**
      *  When multiple payments have been received you can get them using this method 
@@ -54,23 +54,23 @@ public interface Payment {
      *  <li> etc </li>
      * </ol>
      * @param payload {@link PaymentPayload}
-     * @return {@link PaymentInitializationResponse}
+     * @return {@link PayInit}
      */
-    public PaymentInitializationResponse initializePayment(PaymentPayload payload);
+    public PayInit initializePayment(PaymentPayload payload);
 
     /**
      * This retrieves the timeline of a payment if you're interested in getting more data regarding the payment
      * @param identifier -> this is the id of the payment
-     * @return {@link PaymentTimelineResponse}
+     * @return {@link PayTimeline}
      */
-    public PaymentTimelineResponse getPaymentTimeline(String identifier);
+    public PayTimeline getPaymentTimeline(String identifier);
 
     /**
      * When an initial payment is made, sometimes, an authorization is returned
      * With this method, you would not need to request authorization before charging a card
      * 
      * @param payload {@link PaymentPayload}
-     * @return {@link PaymentChargeResponse}
+     * @return {@link ChargeRes}
      */
-    public PaymentChargeResponse chargeAuthorization(PaymentPayload payload);
+    public ChargeRes chargeAuthorization(PaymentPayload payload);
 }

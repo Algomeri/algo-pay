@@ -1,6 +1,6 @@
 package com.algomeri.response;
 
-public interface PaystackPaymentInitializationResponse extends PaymentInitializationResponse{
+public interface PaystackPayInit extends PayInit{
     String getAuthorizationUrl();
     String getAccessCode();
     String getReference();

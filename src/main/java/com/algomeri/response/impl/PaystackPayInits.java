@@ -1,8 +1,8 @@
 package com.algomeri.response.impl;
 
-import com.algomeri.response.PaystackPaymentInitializationResponse;
+import com.algomeri.response.PaystackPayInit;
 
-public class PaystackPaymentInitializationResponseImpl implements PaystackPaymentInitializationResponse{
+public class PaystackPayInits implements PaystackPayInit{
     private String authorizationUrl;
     private String accessCode;
     private String reference;
