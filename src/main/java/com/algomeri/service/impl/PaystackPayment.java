@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.algomeri.client.PaystackClient;
 import com.algomeri.payload.PaymentParam;
 import com.algomeri.payload.PaymentPayload;
 import com.algomeri.response.ChargeRes;
@@ -33,7 +32,7 @@ public class PaystackPayment implements Payment {
         Optional<PaymentVerifier> verifier = Optional.empty();
         // PaystackPaymentVerifier response = new PaystackPaymentVerifier();
         try {
-            Call<JsonNode> call = PaystackClient.client().verifyPayment(identifier);
+            Call<JsonNode> call = PaystackClient.client.verifyPayment(identifier);
             Response<JsonNode> res = call.execute();
             JsonNode node = res.body();
 

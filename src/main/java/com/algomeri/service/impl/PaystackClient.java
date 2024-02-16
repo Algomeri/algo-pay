@@ -1,8 +1,9 @@
-package com.algomeri.client;
+package com.algomeri.service.impl;
 
 import java.io.IOException;
 import java.util.Optional;
 
+import com.algomeri.client.PaystackRestClient;
 import com.algomeri.sdk.Paystack;
 
 import okhttp3.Interceptor;
@@ -11,16 +12,16 @@ import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
-public class PaystackClient {
+class PaystackClient {
 
     private static volatile Optional<Retrofit> retrofit = Optional.empty();
-    private static volatile PaystackRestClient paystackRestClient;
+    public static volatile PaystackRestClient client = client();
 
     private PaystackClient() {
 
     }
 
-    public static PaystackRestClient client() {
+    private static PaystackRestClient client() {
         if (retrofit.isEmpty()) {
             synchronized (Retrofit.class) {
                 if (retrofit.isEmpty()) {
@@ -30,13 +31,13 @@ public class PaystackClient {
                             .client(interceptor())
                             .addConverterFactory(JacksonConverterFactory.create())
                             .build());
-                    paystackRestClient = retrofit.get().create(PaystackRestClient.class);
+                    client = retrofit.get().create(PaystackRestClient.class);
 
                 }
             }
         }
 
-        return paystackRestClient;
+        return client;
     }
 
     private static OkHttpClient interceptor() {
