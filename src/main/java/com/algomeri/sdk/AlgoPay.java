@@ -1,5 +1,7 @@
 package com.algomeri.sdk;
 
-public interface AlgoPay {
+import com.algomeri.service.Configuration;
 
+public interface AlgoPay {
+    public Configuration configuration();
 }

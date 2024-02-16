@@ -1,6 +1,8 @@
 package com.algomeri.service.impl;
 
-public abstract class AbstractConfiguration {
+import com.algomeri.service.Configuration;
+
+public abstract class AbstractConfiguration implements Configuration {
     private String secretKey;
     private String publicKey;
 
@@ -9,32 +11,13 @@ public abstract class AbstractConfiguration {
         this.publicKey = publicKey;
     }
 
-    /**
-     * @return String return the secretKey
-     */
-    public String getSecretKey() {
-        return secretKey;
-    }
-
-    /**
-     * @param secretKey the secretKey to set
-     */
-    public void setSecretKey(String secretKey) {
-        this.secretKey = secretKey;
-    }
-
-    /**
-     * @return String return the publicKey
-     */
+    @Override
     public String getPublicKey() {
         return publicKey;
     }
 
-    /**
-     * @param publicKey the publicKey to set
-     */
-    public void setPublicKey(String publicKey) {
-        this.publicKey = publicKey;
+    @Override
+    public String getSecretKey() {
+        return secretKey;
     }
-
 }
