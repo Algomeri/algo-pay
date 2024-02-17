@@ -3,7 +3,6 @@ package com.algomeri;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,20 +20,13 @@ public class Check {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     AlgoPay algoPay = new Paystack.Builder().withConfiguration(new PaystackConfig("", "null")).build();
 
-    @BeforeAll
-    public static void name() {
-        
-        
-    }
-
     @Test
     public void checl() {
 
         AlgoPay algoPay = Paystack.getInstance();
         Optional<PaymentVerifier> verifier = algoPay.payment().verifyPayment("0nuorm8qhj");
         log.info("response: {}", verifier);
-        
-        
+
     }
 
     @Test
@@ -42,7 +34,7 @@ public class Check {
         algoPay = Paystack.getInstance();
         List<Bank> banks = algoPay.helper().getBanks();
         log.info("Banks: {}", banks);
-        
+
     }
 
     @Test
@@ -55,6 +47,11 @@ public class Check {
     public void verifyCard() {
         CardVerifier verifier = algoPay.helper().validateCard("539983");
         log.info("response: {}", verifier);
+    }
+
+    @Test
+    public void foo() {
+        
     }
 
 }
