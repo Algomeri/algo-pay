@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.algomeri.client.PaystackRestClient;
-import com.algomeri.data.AccountVerifier;
 import com.algomeri.data.impl.PaystackAccountVerifier;
 import com.algomeri.data.impl.PaystackBank;
+import com.algomeri.data.impl.PaystackCardVerifier;
 import com.algomeri.sdk.Paystack;
 import com.algomeri.utility.MappingUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -86,12 +86,21 @@ class PaystackClient {
         }
     }
 
-    public AccountVerifier verifyAccountNumber(String accountNumber, String bankCode) {
+    public PaystackAccountVerifier verifyAccountNumber(String accountNumber, String bankCode) {
         try {
             JsonNode node = client.validateBankAccount(accountNumber, bankCode).execute().body();
             return mappingUtils.jsonToPojo(node.get("data"), PaystackAccountVerifier.class);
         } catch (Exception e) {
             throw new RuntimeException("An exception occured while verifying account number", e);
+        }
+    }
+
+    public PaystackCardVerifier validateCard(String bin) {
+        try {
+            JsonNode node = PaystackClient.client().validateCard(bin).execute().body();
+            return mappingUtils.jsonToPojo(node.get("data"), PaystackCardVerifier.class);
+        } catch (Exception e) {
+            throw new RuntimeException("An exception occured while verifying card", e);
         }
     }
 }

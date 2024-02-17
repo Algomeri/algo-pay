@@ -8,13 +8,9 @@ import com.algomeri.data.AccountVerifier;
 import com.algomeri.data.Bank;
 import com.algomeri.data.CardVerifier;
 import com.algomeri.data.Estimate;
-import com.algomeri.data.impl.PaystackCardVerifier;
 import com.algomeri.service.Helper;
-import com.algomeri.utility.MappingUtils;
-import com.fasterxml.jackson.databind.JsonNode;
 
 public class PaystackHelper implements Helper {
-    private MappingUtils mappingUtils = new MappingUtils();
     private PaystackClient paystackClient = new PaystackClient();
 
     @Override
@@ -29,12 +25,7 @@ public class PaystackHelper implements Helper {
 
     @Override
     public CardVerifier validateCard(String bin) {
-        try {
-            JsonNode node = PaystackClient.client().validateCard(bin).execute().body();
-            return mappingUtils.jsonToPojo(node.get("data"), PaystackCardVerifier.class);
-        } catch (Exception e) {
-            throw new RuntimeException("An exception occured while verifying card", e);
-        }
+        return paystackClient.validateCard(bin);
     }
 
     @Override

@@ -18,9 +18,11 @@ import org.slf4j.LoggerFactory;
 
 import com.algomeri.data.AccountVerifier;
 import com.algomeri.data.Bank;
+import com.algomeri.data.CardVerifier;
 import com.algomeri.data.Estimate;
 import com.algomeri.data.impl.PaystackAccountVerifier;
 import com.algomeri.data.impl.PaystackBank;
+import com.algomeri.data.impl.PaystackCardVerifier;
 import com.algomeri.utility.MappingUtils;
 
 @ExtendWith(MockitoExtension.class)
@@ -124,6 +126,27 @@ public class PaystackHelperTest {
         assertThat(verifier.getAccountName()).isEqualTo(ACCOUNT_NAME);
         assertThat(verifier.getAccoutNumber()).isEqualTo(ACCOUNT_NUMBER);
         assertThat(verifier).isNotEqualTo(new PaystackAccountVerifier());
+    }
+
+    @Test
+    public void verifyCard() throws Exception {
+        final String BIN = "385933";
+        final String COUNTRY = "USA";
+        final String BRAND = "Visa";
+        final String BANK = "Chase";
+
+
+        when(paystackClient.validateCard(any())).thenReturn(new PaystackCardVerifier(COUNTRY, BRAND, BANK, BIN));
+
+        CardVerifier verifier = helper.validateCard(BIN);
+        verifier.toString();
+
+        assertThat(verifier).isNotNull();
+        assertThat(verifier.getCountry()).isEqualTo(COUNTRY);
+        assertThat(verifier.getBrand()).isEqualTo(BRAND);
+        assertThat(verifier.getBank()).isEqualTo(BANK);
+        assertThat(verifier.getBin()).isEqualTo(BIN);
+        assertThat(verifier).isNotEqualTo(new PaystackCardVerifier());
     }
 
 }
