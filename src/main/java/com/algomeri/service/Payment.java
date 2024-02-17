@@ -27,7 +27,7 @@ public interface Payment {
      * @return {@link PaymentVerifier} containing information about the payment
      * 
      */
-    public Optional<PaymentVerifier> verifyPayment(String identifier);
+    public PaymentVerifier verifyPayment(String identifier);
 
     /**
      *  When multiple payments have been received you can get them using this method 

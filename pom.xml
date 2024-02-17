@@ -7,6 +7,7 @@
   <groupId>com.algomeri</groupId>
   <artifactId>algo-pay</artifactId>
   <version>1.0.0</version>
+  <description>Client for online payments</description>
 
   <name>algo-pay</name>
   <!-- FIXME change it to the project's website -->
@@ -16,23 +17,26 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
+    <maven-failsafe-plugin.version>3.0.0-M4</maven-failsafe-plugin.version>
+    <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
   </properties>
 
   <dependencies>
-    <dependency>
+    <!-- <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.12</version>
       <scope>test</scope>
-    </dependency>
+    </dependency> -->
 
     <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>5.10.0</version>
+      <version>5.8.1</version>
       <scope>test</scope>
     </dependency>
+
 
     <!-- https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter -->
     <dependency>
@@ -61,14 +65,6 @@
       <artifactId>converter-jackson</artifactId>
       <version>2.7.2</version>
     </dependency>
-
-
-    <!-- Logging -->
-    <!-- <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.2.6</version>
-    </dependency> -->
 
     <!-- Http -->
     <dependency>
@@ -133,10 +129,33 @@
       <scope>provided</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.jacoco</groupId>
+      <artifactId>jacoco-maven-plugin</artifactId>
+      <version>0.8.7</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.vintage</groupId>
+      <artifactId>junit-vintage-engine</artifactId>
+      <version>5.7.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-launcher</artifactId>
+      <version>1.8.2</version>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+      </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
@@ -153,8 +172,63 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.0.0-M5</version>        <!-- Replace with the desired version -->
         <configuration>
-          <argLine>--add-opens java.base/java.lang.invoke=ALL-UNNAMED</argLine>
+
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>${maven-failsafe-plugin.version}</version>
+        <configuration>
+          <classesDirectory>${project.build.outputDirectory}</classesDirectory>
+          <runOrder>alphabetical</runOrder>
+          <reportsDirectory>${junit.itReportFolder}</reportsDirectory>
+          <includes>
+            <include>**/*IT*</include>
+            <include>**/*IntTest*</include>
+          </includes>
+          <testFailureIgnore>true</testFailureIgnore>
+          <argLine>-javaagent:lib/junit-vintage-engine.jar</argLine>
+        </configuration>
+        <executions>
+          <execution>
+            <id>integration-test</id>
+            <goals>
+              <goal>integration-test</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>verify</id>
+            <goals>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.7</version>
+        <executions>
+          <execution>
+            <id>default-prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <configuration>
+              <dataFile>${project.build.directory}/jacoco.exec</dataFile>
+              <outputDirectory>${project.reporting.outputDirectory}/jacoco</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
 

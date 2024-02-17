@@ -2,3 +2,8 @@ run
 
 .DS_Store
 *.class
+
+/target
+/target/*
+/target/**
+/target/maven-status/**

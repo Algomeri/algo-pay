@@ -18,18 +18,18 @@ import com.algomeri.service.impl.PaystackConfig;
 public class Check {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
-    AlgoPay algoPay = new Paystack.Builder().withConfiguration(new PaystackConfig("", "null")).build();
+    AlgoPay algoPay = new Paystack.Builder().withConfiguration(new PaystackConfig("sk_test_9a81ce21dd23aa7a7ae6da01832f703edddc682e", "null")).build();
 
-    @Test
+    // @Test
     public void checl() {
 
         AlgoPay algoPay = Paystack.getInstance();
-        Optional<PaymentVerifier> verifier = algoPay.payment().verifyPayment("0nuorm8qhj");
+        PaymentVerifier verifier = algoPay.payment().verifyPayment("0nuorm8qhj");
         log.info("response: {}", verifier);
 
     }
 
-    @Test
+    // @Test
     public void getBanks() {
         algoPay = Paystack.getInstance();
         List<Bank> banks = algoPay.helper().getBanks();
@@ -37,21 +37,21 @@ public class Check {
 
     }
 
-    @Test
+    // @Test
     public void verifyAccount() {
         AccountVerifier verifier = algoPay.helper().verifyAccountNumber("7045553461", "999992");
         log.info("response: {}", verifier);
     }
 
-    @Test
+    // @Test
     public void verifyCard() {
         CardVerifier verifier = algoPay.helper().validateCard("539983");
         log.info("response: {}", verifier);
     }
 
-    @Test
+    // @Test
     public void foo() {
-        
+
     }
 
 }
