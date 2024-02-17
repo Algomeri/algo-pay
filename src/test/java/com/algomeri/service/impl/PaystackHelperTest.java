@@ -47,8 +47,11 @@ public class PaystackHelperTest {
         double roundedCharge = Double.valueOf(String.format("%.2f", estimate.getEstimatedCharge()));
         double roundedFee = Double.valueOf(String.format("%.2f", estimate.getEstimatedFee()));
 
+        estimate.toString();
         assertThat(AMOUNT).isNotEqualTo(estimate.getEstimatedCharge());
         assertThat(AMOUNT).isEqualTo(roundedCharge - roundedFee);
+        assertThat(estimate.getCharge()).isEqualTo(AMOUNT);
+        assertThat(estimate).isNotEqualTo(new Estimate());
     }
 
     @Test
