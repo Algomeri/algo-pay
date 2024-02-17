@@ -9,6 +9,14 @@ public class PaystackAccountVerifier implements AccountVerifier {
     @JsonProperty(value = "account_name")
     private String accountName;
 
+    public PaystackAccountVerifier() {
+    }
+
+    public PaystackAccountVerifier(String accountNumber, String accountName) {
+        this.accountNumber = accountNumber;
+        this.accountName = accountName;
+    }
+
     @Override
     public String getAccoutNumber() {
         return accountNumber;

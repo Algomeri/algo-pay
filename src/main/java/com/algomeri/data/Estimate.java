@@ -26,20 +26,11 @@ public class Estimate {
     public double getCharge() {
         return charge;
     }
-    public void setCharge(double charge) {
-        this.charge = charge;
-    }
     public double getEstimatedCharge() {
         return estimatedCharge;
     }
-    public void setEstimatedCharge(double estimatedCharge) {
-        this.estimatedCharge = estimatedCharge;
-    }
     public double getEstimatedFee() {
         return estimatedFee;
-    }
-    public void setEstimatedFee(double estimatedFee) {
-        this.estimatedFee = estimatedFee;
     }
     @Override
     public String toString() {

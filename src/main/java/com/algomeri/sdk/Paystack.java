@@ -10,6 +10,9 @@ import com.algomeri.service.impl.PaystackConfig;
 import com.algomeri.service.impl.PaystackHelper;
 import com.algomeri.service.impl.PaystackPayment;
 
+import lombok.ToString;
+
+@ToString
 public class Paystack implements AlgoPay {
 
     private PaystackConfig configuration;

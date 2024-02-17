@@ -6,6 +6,14 @@ public class PaystackBank implements Bank {
     private String name;
     private String code;
 
+    public PaystackBank() {
+    }
+
+    public PaystackBank(String name, String code) {
+        this.name = name;
+        this.code = code;
+    }
+
     @Override
     public String getName() {
         return name;

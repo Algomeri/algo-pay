@@ -21,7 +21,7 @@ public class PaystackPayment implements Payment {
     @Override
     public PaymentVerifier verifyPayment(String identifier) {
         try {
-            JsonNode node = PaystackClient.client.verifyPayment(identifier).execute().body();
+            JsonNode node = PaystackClient.client().verifyPayment(identifier).execute().body();
             return mappingUtils.jsonToPojo(node.get("data"), PaystackPaymentVerifier.class);
         } catch (Exception e) {
             throw new RuntimeException("An exception occurred while trying to verify payment", e);
