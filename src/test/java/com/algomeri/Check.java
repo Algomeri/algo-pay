@@ -18,7 +18,7 @@ import com.algomeri.service.impl.PaystackConfig;
 public class Check {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
-    AlgoPay algoPay = new Paystack.Builder().withConfiguration(new PaystackConfig("sk_test_9a81ce21dd23aa7a7ae6da01832f703edddc682e", "null")).build();
+    AlgoPay algoPay = new Paystack.Builder().withConfiguration(new PaystackConfig("", "null")).build();
 
     // @Test
     public void checl() {
@@ -49,9 +49,11 @@ public class Check {
         log.info("response: {}", verifier);
     }
 
-    // @Test
+    @Test
     public void foo() {
-
+        String name = "Mike";
+        boolean bool = name.equalsIgnoreCase("miKe");
+        log.info("bool: {}", bool);
     }
 
 }
