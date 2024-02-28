@@ -29,8 +29,7 @@ public class PaystackHelper implements Helper {
     }
 
     @Override
-    public Estimate estimateFee(double amount, Boolean isLocalPayment) {
-        isLocalPayment = Objects.requireNonNullElse(isLocalPayment, true);
+    public Estimate estimateFee(double amount, boolean isLocalPayment) {
         double fee = 0.015;
         double maxLocalCharge = 2000;
         double estimatedCharge = 0;

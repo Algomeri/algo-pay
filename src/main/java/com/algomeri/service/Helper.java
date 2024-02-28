@@ -49,5 +49,5 @@ public interface Helper {
      * @param isLocalPayment -> defaults to true if null
      * @return {@link Estimate}
      */
-    public Estimate estimateFee(double amount, Boolean isLocalPayment);
+    public Estimate estimateFee(double amount, boolean isLocalPayment);
 }
